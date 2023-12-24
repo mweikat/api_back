@@ -1,0 +1,42 @@
+#server
+server.port=8080
+# Enable response compression
+server.compression.enabled=true
+# The comma-separated list of mime types that should be compressed
+server.compression.mime-types=text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+# Compress the response only if the response size is at least 1KB
+server.compression.min-response-size=1024
+# Enable HTTP/2 support, if the current environment supports it
+server.http2.enabled=true
+# Maximum time the response should be cached (in seconds)
+spring.resources.cache.cachecontrol.max-age=120
+# The cache must re-validate stale resources with the server. Any expired resources must not be used without re-validating.
+spring.resources.cache.cachecontrol.must-revalidate=true
+
+
+#DB
+spring.datasource.url=yourUrl
+spring.datasource.username = yourUserName
+spring.datasource.password = yourPassword
+#spring.jpa.hibernate.ddl-auto = update
+org.hibernate.dialect.MySQLDialect = org.hibernate.dialect.MySQL5Dialect
+jpa.show-sql = true
+#spring.jpa.show-sql=true
+
+#email
+spring.mail.host=smtp.gmail.com
+spring.mail.port=465
+spring.mail.username=email dir
+spring.mail.password=app email token or pass
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+#Log
+#log-level
+logging.level.root=INFO
+logging.level.cl.miprueba.src=DEBUG
+#pattern whit color
+logging.pattern.console=%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr([%level]){magenta}  %c{1.} [%t] %m%n
+#to file log
+#logging.file.name = loggerAPI_Miprueba.log
+#logging.pattern.file= %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} [%level] %c{1.} [%t] %m%n
