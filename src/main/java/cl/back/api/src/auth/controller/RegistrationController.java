@@ -3,6 +3,7 @@ package cl.back.api.src.auth.controller;
 
 import cl.back.api.src.auth.application.UserRegistration;
 import cl.back.api.src.auth.controller.request.RegisterRequest;
+import cl.back.api.src.auth.controller.response.RegisterResponse;
 import cl.back.api.src.messages.AuthMessages;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+import static cl.back.api.src.messages.AuthMessages.USER_CREATE_OK;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 public class RegistrationController {
@@ -22,10 +25,12 @@ public class RegistrationController {
     private UserRegistration userRegistration;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest registerData) {
+    public ResponseEntity<RegisterResponse> register(@Valid @RequestBody RegisterRequest registerData) {
         //logger.debug("entra por a register",registerData);
+        RegisterResponse rr = new RegisterResponse(USER_CREATE_OK);
         userRegistration.register(registerData.getName(),registerData.getLastName(),registerData.getEmail(),registerData.getPassword());
-        return ResponseEntity.status(HttpStatus.CREATED).body(AuthMessages.USER_CREATE_OK);
+        //return ResponseEntity.status(HttpStatus.CREATED).body(AuthMessages.USER_CREATE_OK);
+        return ResponseEntity.ok(rr);
     }
 
     @GetMapping("/validate_email/{user_id}")
