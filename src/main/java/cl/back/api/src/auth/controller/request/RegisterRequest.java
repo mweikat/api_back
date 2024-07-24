@@ -12,14 +12,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RegisterRequest {
 
-    @NotEmpty()
+    @NotEmpty
     @Size(min=2,max=30)
     private String name;
 
-    @Size(max=30)
+    @Size(min=2, max=30)
     private String lastName;
 
-    @Email
+    @Email(message = "{jakarta.validation.constraints.Email.message}")
     @NotEmpty
     @Size(max=100)
     private String email;

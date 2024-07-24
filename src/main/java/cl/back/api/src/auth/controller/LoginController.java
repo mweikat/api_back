@@ -7,6 +7,7 @@ import cl.back.api.src.auth.controller.response.LoginResponse;
 import cl.back.api.src.messages.AuthMessages;
 import jakarta.servlet.http.HttpServletResponse;
 //import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class LoginController {
     private UserLogin userLogin;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request, HttpServletResponse response) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request, HttpServletResponse response) {
 
         LoginResponse lur = userLogin.login(request.getEmail(), request.getPassword());
         response.addCookie(userLogin.getCookie());
