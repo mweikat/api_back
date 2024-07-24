@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class RegisterResponse {
-    private String msg;
+    private String message;
 }

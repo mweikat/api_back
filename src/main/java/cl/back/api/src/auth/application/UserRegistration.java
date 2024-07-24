@@ -1,6 +1,5 @@
 package cl.back.api.src.auth.application;
 
-
 import cl.back.api.src.entities.User;
 import cl.back.api.src.services.user.UserServiceImpl;
 import cl.back.api.src.utils.Encrypt;
@@ -26,7 +25,7 @@ public class UserRegistration {
     @Autowired
     private EmailServiceImpl emailServiceImpl;
 
-    @Transactional
+
     public void register(String name, String lastName, String email, String password){
 
         User user = new User();
