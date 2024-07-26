@@ -3,12 +3,18 @@ package cl.back.api.src.auth.controller;
 import cl.back.api.src.auth.application.UserResetPassEmail;
 import cl.back.api.src.auth.controller.request.ResetPassEmailRequest;
 import cl.back.api.src.auth.controller.request.ResetChangePassRequest;
+import cl.back.api.src.auth.controller.response.ResetPassEmailResponse;
 import cl.back.api.src.messages.AuthMessages;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -17,11 +23,18 @@ public class ResetPasswordController {
     @Autowired
     private UserResetPassEmail userResetPassEmail;
 
-    @PostMapping("/reset_pass/mail")
+    /*@PostMapping("/reset_pass/mail")
     public ResponseEntity<String> reset_pass_email(@Valid @RequestBody ResetPassEmailRequest resetPassEmailRequest) {
 
         userResetPassEmail.userResetPass(resetPassEmailRequest.getEmail());
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(AuthMessages.USER_CHANGEPASS_EMAIL);
+    }*/
+    @PostMapping("/reset_pass/mail")
+    public ResetPassEmailResponse reset_pass_email(@Valid @RequestBody ResetPassEmailRequest resetPassEmailRequest) {
+
+        userResetPassEmail.userResetPass(resetPassEmailRequest.getEmail());
+        //return ResponseEntity.status(HttpStatus.ACCEPTED).body(AuthMessages.USER_CHANGEPASS_EMAIL);
+        return new ResetPassEmailResponse(AuthMessages.USER_CHANGEPASS_EMAIL);
     }
 
     @GetMapping("/reset_pass/mail_confirm/{token}")
